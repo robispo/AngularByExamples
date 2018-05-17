@@ -12,18 +12,10 @@ export class HomeComponent implements OnInit {
 
   constructor(private http: Http) { }
 
-  ngOnInit() {
-    this.getValues();
-  }
+  ngOnInit() {}
 
   registerToggle() {
     this.registerMode = true;
-  }
-
-  getValues() {
-    this.http.get('http://localhost:58746/api/values').subscribe(response => {
-      this.values = response.json();
-    });
   }
 
   cancelRegisterMode(registerMode: boolean ) {
