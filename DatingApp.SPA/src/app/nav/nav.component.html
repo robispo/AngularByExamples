@@ -1,39 +1,41 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Dating App</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+  <a class="navbar-brand" href="#">Dating App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Matches <!--<span class="sr-only">(current)</span>--></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Lists</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Messages</a>
-        </li>
-      </ul>
-      <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
-        <input class="form-control mr-sm-2" type="email" placeholder="Email" aria-label="Email" name="username" required [(ngModel)]="model.username">
-        <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password" name="password" required [(ngModel)]="model.password">
-        <button [disabled]="!loginForm.valid" class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
-      </form>
-      <ul *ngIf="loggedIn()" class="navbar-nav d-flex justify-content-end">
-          <li class="nav-item">
-              <a class="nav-link" (click)="logout()">Logout</a>
-            </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">Welcome User</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto" *ngIf="loggedIn()">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Matches
+          <!--<span class="sr-only">(current)</span>-->
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Lists</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Messages</a>
+      </li>
+    </ul>
+    <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
+      <input class="form-control mr-sm-2" type="email" placeholder="Email" aria-label="Email" name="username" required [(ngModel)]="model.username">
+      <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password" name="password" required
+        [(ngModel)]="model.password">
+      <button [disabled]="!loginForm.valid" class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
+    </form>
+    <ul *ngIf="loggedIn()" class="navbar-nav d-flex justify-content-end">
+      <li class="nav-item dropdown" dropdown>
+        <a class="nav-link dropdown-toggle" href="#" dropdownToggle>Welcome {{authService.decodedToken?.unique_name | titlecase}}</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *dropdownMenu>
+          <a class="dropdown-item" href="#">
+            <i class="fa fa-user"></i>Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">
+            <i class="fa fa-sign-out"></i>Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
