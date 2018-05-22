@@ -1,3 +1,7 @@
-.dropdown-item {
+.dropdown-item,
+.dropdown-toggle {
   cursor: pointer;
+}
+.fa {
+  margin-right: 3px;
 }
